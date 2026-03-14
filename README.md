@@ -6,6 +6,7 @@ SparkLabs is a playground project designed to help developers quickly get starte
 
 - **Structured Packages**: Source code is organized under `batch` and `streaming` for future expansion.
 - **Scala and Python**: The sales examples now exist in both languages with matching package layouts.
+- **SQL and DataFrame Styles**: Sales examples are split into `dataframe` and `sql` implementations for the same business questions.
 - **Sales Sample Data**: Includes simple sales-related datasets to build a mental model of data processing.
 - **Sample DataFrame Examples**: Provides Spark session initialization and sample transformations for hands-on learning.
 - **Additional Libraries**: Integrates DataFlint for enhanced Spark UI visualization and Deequ for Scala data quality testing.
@@ -18,11 +19,12 @@ SparkLabs/
 │   └── sales/
 ├── python/
 │   ├── requirements.txt
-│   └── src/
-│       └── sparklabs/
-│           ├── batch/
-│           │   └── sales/
-│           └── streaming/
+│   └── sparklabs/
+│       ├── batch/
+│       │   └── sales/
+│       │       ├── dataframe/
+│       │       └── sql/
+│       └── streaming/
 ├── scala/
 │   ├── build.sbt
 │   └── src/
@@ -33,15 +35,19 @@ SparkLabs/
 │                       └── sparklabs/
 │                           ├── batch/
 │                           │   └── sales/
+│                           │       ├── dataframe/
+│                           │       └── sql/
 │                           └── streaming/
 └── README.md
 ```
 
 - `data/sales/`: Shared CSV datasets used by both language implementations.
-- `scala/src/main/scala/io/devorbit/sparklabs/batch/sales/`: Scala batch sales examples.
+- `scala/src/main/scala/io/devorbit/sparklabs/batch/sales/dataframe/`: Scala DataFrame-based sales examples.
+- `scala/src/main/scala/io/devorbit/sparklabs/batch/sales/sql/`: Scala SQL-based sales examples.
 - `scala/src/main/scala/io/devorbit/sparklabs/streaming/`: Scala streaming area for future examples.
-- `python/src/sparklabs/batch/sales/`: Python batch sales examples mirroring the Scala samples.
-- `python/src/sparklabs/streaming/`: Python streaming area for future examples.
+- `python/sparklabs/batch/sales/dataframe/`: Python DataFrame-based sales examples.
+- `python/sparklabs/batch/sales/sql/`: Python SQL-based sales examples.
+- `python/sparklabs/streaming/`: Python streaming area for future examples.
 
 ## Setup Instructions
 
@@ -70,14 +76,15 @@ SparkLabs/
 
 8. If prompted, refresh the SBT project. You can do this by clicking the refresh icon in the SBT tool window or via the tooltip.
 
-9. Once set up, you can start running Scala applications from `io.devorbit.sparklabs.batch.sales`.
+9. Once set up, you can start running Scala applications from `io.devorbit.sparklabs.batch.sales.dataframe` or `io.devorbit.sparklabs.batch.sales.sql`.
 
 ### Python setup
 
 1. Create and activate a virtual environment inside [python](/Users/jayantkumar/Workspace/Code/SparkLabs/python).
 2. Install dependencies with `pip install -r requirements.txt`.
-3. Set `PYTHONPATH=src` from the `python/` directory.
-4. Run a sample with `python -m sparklabs.batch.sales.top_selling_products`.
+3. Set `PYTHONPATH=.` from the `python/` directory.
+4. Run a DataFrame sample with `python -m sparklabs.batch.sales.dataframe.top_selling_products`.
+5. Run a SQL sample with `python -m sparklabs.batch.sales.sql.top_selling_products`.
 
 ## Contribution Guide
 
