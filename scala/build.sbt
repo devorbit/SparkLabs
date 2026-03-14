@@ -1,12 +1,11 @@
 //name of the package
 name := "scala"
-//version of our package
+//package version
 version := "1.0"
 //version of Scala
 scalaVersion := "2.12.10"
 resolvers += "Amazon Deequ" at "https://aws.oss.sonatype.org/content/repositories/releases/"
-// spark library dependencies 
-// change this to 3.0.0 when released
+// spark library dependencies
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % "3.1.1",
   "org.apache.spark" %% "spark-sql"  % "3.1.1",
