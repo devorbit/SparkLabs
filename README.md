@@ -2,10 +2,28 @@
 
 SparkLabs is a playground project designed to help developers quickly get started with Apache Spark. It now includes parallel Scala and Python package structures, with room to grow across both batch and streaming workloads.
 
+## Supported Languages
+
+| Language | Status |
+| --- | --- |
+| Scala | `✓` |
+| Python | `✓` |
+| R | `Coming` |
+
+## Supported Spark APIs
+
+| API | Scala | Python | R |
+| --- | --- | --- | --- |
+| RDD | `✓` | `✓` | `Coming` |
+| DataFrame | `✓` | `✓` | `Coming` |
+| Dataset | `✓` | `✓` | `Coming` |
+| SQL | `✓` | `✓` | `Coming` |
+
 ## Features
 
 - **Structured Packages**: Source code is organized under `batch` and `streaming` for future expansion.
 - **Scala and Python**: The sales examples now exist in both languages with matching package layouts.
+- **RDD Support**: Sales examples now include `rdd` implementations alongside higher-level Spark APIs.
 - **SQL and DataFrame Styles**: Sales examples are split into `dataframe` and `sql` implementations for the same business questions.
 - **Dataset Style**: Sales examples also include `dataset` implementations, using typed Datasets in Scala and dataset-style record mapping in Python.
 - **Sales Sample Data**: Includes simple sales-related datasets to build a mental model of data processing.
@@ -25,6 +43,7 @@ SparkLabs/
 │       │   └── sales/
 │       │       ├── dataframe/
 │       │       ├── dataset/
+│       │       ├── rdd/
 │       │       └── sql/
 │       └── streaming/
 ├── scala/
@@ -39,6 +58,7 @@ SparkLabs/
 │                           │   └── sales/
 │                           │       ├── dataframe/
 │                           │       ├── dataset/
+│                           │       ├── rdd/
 │                           │       └── sql/
 │                           └── streaming/
 └── README.md
@@ -47,10 +67,12 @@ SparkLabs/
 - `data/sales/`: Shared CSV datasets used by both language implementations.
 - `scala/src/main/scala/io/devorbit/sparklabs/batch/sales/dataframe/`: Scala DataFrame-based sales examples.
 - `scala/src/main/scala/io/devorbit/sparklabs/batch/sales/dataset/`: Scala Dataset-based sales examples.
+- `scala/src/main/scala/io/devorbit/sparklabs/batch/sales/rdd/`: Scala RDD-based sales examples.
 - `scala/src/main/scala/io/devorbit/sparklabs/batch/sales/sql/`: Scala SQL-based sales examples.
 - `scala/src/main/scala/io/devorbit/sparklabs/streaming/`: Scala streaming area for future examples.
 - `python/sparklabs/batch/sales/dataframe/`: Python DataFrame-based sales examples.
 - `python/sparklabs/batch/sales/dataset/`: Python dataset-style sales examples.
+- `python/sparklabs/batch/sales/rdd/`: Python RDD-based sales examples.
 - `python/sparklabs/batch/sales/sql/`: Python SQL-based sales examples.
 - `python/sparklabs/streaming/`: Python streaming area for future examples.
 
@@ -81,7 +103,7 @@ SparkLabs/
 
 8. If prompted, refresh the SBT project. You can do this by clicking the refresh icon in the SBT tool window or via the tooltip.
 
-9. Once set up, you can start running Scala applications from `io.devorbit.sparklabs.batch.sales.dataframe`, `io.devorbit.sparklabs.batch.sales.dataset`, or `io.devorbit.sparklabs.batch.sales.sql`.
+9. Once set up, you can start running Scala applications from `io.devorbit.sparklabs.batch.sales.rdd`, `io.devorbit.sparklabs.batch.sales.dataframe`, `io.devorbit.sparklabs.batch.sales.dataset`, or `io.devorbit.sparklabs.batch.sales.sql`.
 
 ### Python setup
 
@@ -89,8 +111,9 @@ SparkLabs/
 2. Install dependencies with `pip install -r requirements.txt`.
 3. Set `PYTHONPATH=.` from the `python/` directory.
 4. Run a DataFrame sample with `python -m sparklabs.batch.sales.dataframe.top_selling_products`.
-5. Run a dataset-style sample with `python -m sparklabs.batch.sales.dataset.top_selling_products`.
-6. Run a SQL sample with `python -m sparklabs.batch.sales.sql.top_selling_products`.
+5. Run an RDD sample with `python -m sparklabs.batch.sales.rdd.top_selling_products`.
+6. Run a dataset-style sample with `python -m sparklabs.batch.sales.dataset.top_selling_products`.
+7. Run a SQL sample with `python -m sparklabs.batch.sales.sql.top_selling_products`.
 
 ## Contribution Guide
 
