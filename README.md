@@ -8,16 +8,16 @@ SparkLabs is a playground project designed to help developers quickly get starte
 | --- | --- |
 | Scala | `✓` |
 | Python | `✓` |
-| R | `Coming` |
+| R | `✓` |
 
 ## Supported Spark APIs
 
 | API | Scala | Python | R |
 | --- | --- | --- | --- |
-| RDD | `✓` | `✓` | `Coming` |
-| DataFrame | `✓` | `✓` | `Coming` |
-| Dataset | `✓` | `✓` | `Coming` |
-| SQL | `✓` | `✓` | `Coming` |
+| RDD | `✓` | `✓` | `-` |
+| DataFrame | `✓` | `✓` | `✓` |
+| Dataset | `✓` | `✓` | `-` |
+| SQL | `✓` | `✓` | `✓` |
 
 ## Features
 
@@ -46,6 +46,14 @@ SparkLabs/
 │       │       ├── rdd/
 │       │       └── sql/
 │       └── streaming/
+├── r/
+│   └── sparklabs/
+│       └── batch/
+│           └── sales/
+│               ├── dataframe/
+│               ├── dataset/
+│               ├── rdd/
+│               └── sql/
 ├── scala/
 │   ├── build.sbt
 │   └── src/
@@ -70,6 +78,10 @@ SparkLabs/
 - `scala/src/main/scala/io/devorbit/sparklabs/batch/sales/rdd/`: Scala RDD-based sales examples.
 - `scala/src/main/scala/io/devorbit/sparklabs/batch/sales/sql/`: Scala SQL-based sales examples.
 - `scala/src/main/scala/io/devorbit/sparklabs/streaming/`: Scala streaming area for future examples.
+- `r/sparklabs/batch/sales/dataframe/`: R SparkR DataFrame-based sales examples.
+- `r/sparklabs/batch/sales/sql/`: R SparkR SQL-based sales examples.
+- `r/sparklabs/batch/sales/dataset/`: R notes for unsupported native Dataset API.
+- `r/sparklabs/batch/sales/rdd/`: R notes for unsupported native RDD API.
 - `python/sparklabs/batch/sales/dataframe/`: Python DataFrame-based sales examples.
 - `python/sparklabs/batch/sales/dataset/`: Python dataset-style sales examples.
 - `python/sparklabs/batch/sales/rdd/`: Python RDD-based sales examples.
@@ -83,6 +95,7 @@ SparkLabs/
 - Java JDK (version 8 or higher)
 - Scala SDK for the Scala project
 - Python 3.10+ for the Python project
+- R with SparkR for the R project
 - IntelliJ IDEA with Scala plugin installed, or your preferred editor
 
 ### Steps
@@ -114,6 +127,14 @@ SparkLabs/
 5. Run an RDD sample with `python -m sparklabs.batch.sales.rdd.top_selling_products`.
 6. Run a dataset-style sample with `python -m sparklabs.batch.sales.dataset.top_selling_products`.
 7. Run a SQL sample with `python -m sparklabs.batch.sales.sql.top_selling_products`.
+
+### R setup
+
+1. Install Apache Spark locally. Do not try to install `SparkR` from CRAN; it ships with Spark.
+2. Set `SPARK_HOME` to your Spark installation root so the R scripts can load `SparkR` automatically.
+3. In IntelliJ, add `SPARK_HOME` to the R run configuration environment if you want to run the scripts from the IDE.
+4. From the repo root, run a DataFrame sample with `Rscript r/sparklabs/batch/sales/dataframe/top_selling_products.R`.
+5. Run a SQL sample with `Rscript r/sparklabs/batch/sales/sql/top_selling_products.R`.
 
 ## Contribution Guide
 
