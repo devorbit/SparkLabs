@@ -1,5 +1,6 @@
-package io.devorbit.sparklabs
+package io.devorbit.sparklabs.batch.sales
 
+import io.devorbit.sparklabs.batch.sales.Utils
 import org.apache.spark.sql.functions._
 
 object OrdersRevenueCaseWhen extends App {

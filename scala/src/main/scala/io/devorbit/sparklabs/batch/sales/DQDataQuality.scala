@@ -1,7 +1,8 @@
-package io.devorbit.sparklabs
+package io.devorbit.sparklabs.batch.sales
 
 import com.amazon.deequ.VerificationSuite
 import com.amazon.deequ.checks.{Check, CheckLevel}
+import io.devorbit.sparklabs.batch.sales.Utils
 
 object DQDataQuality extends App {
 

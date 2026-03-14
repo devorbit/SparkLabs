@@ -1,51 +1,56 @@
 # SparkLabs
 
-SparkLabs is a playground project designed to help developers quickly get started with Apache Spark. It currently supports Scala and is planned to extend support for Python and R in the future. This project emphasizes ease of setup, providing sample sales data, and including examples to facilitate learning and experimentation with Spark.
+SparkLabs is a playground project designed to help developers quickly get started with Apache Spark. It now includes parallel Scala and Python package structures, with room to grow across both batch and streaming workloads.
 
 ## Features
 
-- **Easy Setup**: Minimal dependencies to allow developers to start learning Spark quickly.
+- **Structured Packages**: Source code is organized under `batch` and `streaming` for future expansion.
+- **Scala and Python**: The sales examples now exist in both languages with matching package layouts.
 - **Sales Sample Data**: Includes simple sales-related datasets to build a mental model of data processing.
-- **Sample Dataframe Examples**: Provides Spark session initialization and sample DataFrame operations for hands-on learning.
-- **Additional Libraries**: Integrates DataFlint for enhanced Spark UI visualization and Deequ for data quality testing.
+- **Sample DataFrame Examples**: Provides Spark session initialization and sample transformations for hands-on learning.
+- **Additional Libraries**: Integrates DataFlint for enhanced Spark UI visualization and Deequ for Scala data quality testing.
 
 ## Project Structure
 
-```
+```text
 SparkLabs/
 ├── data/
 │   └── sales/
-│       ├── customers.csv
-│       ├── deliveries.csv
-│       ├── events_stream.csv
-│       ├── inventory.csv
-│       ├── order_items.csv
-│       ├── orders.csv
-│       ├── products.csv
-│       ├── promotions.csv
-│       ├── returns.csv
-│       ├── sales_reps.csv
-│       └── stores.csv
-├── src/
-│   └── main/
-│       └── scala/
-│           └── io/
-├── build.sbt
-└── project/
-    └── build.properties
+├── python/
+│   ├── requirements.txt
+│   └── src/
+│       └── sparklabs/
+│           ├── batch/
+│           │   └── sales/
+│           └── streaming/
+├── scala/
+│   ├── build.sbt
+│   └── src/
+│       └── main/
+│           └── scala/
+│               └── io/
+│                   └── devorbit/
+│                       └── sparklabs/
+│                           ├── batch/
+│                           │   └── sales/
+│                           └── streaming/
+└── README.md
 ```
 
-- `data/`: Contains sample sales data in CSV format.
-- `src/`: Source code directory for Scala applications.
-- `build.sbt`: SBT build file for managing dependencies and project configuration.
+- `data/sales/`: Shared CSV datasets used by both language implementations.
+- `scala/src/main/scala/io/devorbit/sparklabs/batch/sales/`: Scala batch sales examples.
+- `scala/src/main/scala/io/devorbit/sparklabs/streaming/`: Scala streaming area for future examples.
+- `python/src/sparklabs/batch/sales/`: Python batch sales examples mirroring the Scala samples.
+- `python/src/sparklabs/streaming/`: Python streaming area for future examples.
 
 ## Setup Instructions
 
 ### Prerequisites
 
 - Java JDK (version 8 or higher)
-- Scala SDK
-- IntelliJ IDEA with Scala plugin installed
+- Scala SDK for the Scala project
+- Python 3.10+ for the Python project
+- IntelliJ IDEA with Scala plugin installed, or your preferred editor
 
 ### Steps
 
@@ -61,11 +66,18 @@ SparkLabs/
 
 6. Under **Project Settings > Project**, select a Java SDK and Scala SDK under the **Project SDK** and **Project language level**.
 
-7. Under **Project Settings > Modules**, select the module (e.g., `scala`), and mark the `src/main/scala` directory as the source directory by right-clicking it and selecting **Mark Directory as > Sources Root**.
+7. Under **Project Settings > Modules**, select the Scala module and mark `scala/src/main/scala` as the source directory by right-clicking it and selecting **Mark Directory as > Sources Root**.
 
 8. If prompted, refresh the SBT project. You can do this by clicking the refresh icon in the SBT tool window or via the tooltip.
 
-9. Once set up, you can start running your Spark applications. Ensure you have Spark dependencies configured in `build.sbt`.
+9. Once set up, you can start running Scala applications from `io.devorbit.sparklabs.batch.sales`.
+
+### Python setup
+
+1. Create and activate a virtual environment inside [python](/Users/jayantkumar/Workspace/Code/SparkLabs/python).
+2. Install dependencies with `pip install -r requirements.txt`.
+3. Set `PYTHONPATH=src` from the `python/` directory.
+4. Run a sample with `python -m sparklabs.batch.sales.top_selling_products`.
 
 ## Contribution Guide
 

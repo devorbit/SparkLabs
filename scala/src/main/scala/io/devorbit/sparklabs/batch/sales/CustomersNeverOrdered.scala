@@ -1,4 +1,4 @@
-package io.devorbit.sparklabs
+package io.devorbit.sparklabs.batch.sales
 
 import org.apache.spark.sql.functions._
 

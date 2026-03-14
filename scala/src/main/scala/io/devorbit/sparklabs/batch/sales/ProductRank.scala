@@ -1,5 +1,6 @@
-package io.devorbit.sparklabs
+package io.devorbit.sparklabs.batch.sales
 
+import io.devorbit.sparklabs.batch.sales.Utils
 import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.functions._
 
@@ -17,5 +18,5 @@ object ProductRank extends App {
     .withColumn("category_rank", dense_rank().over(windowSpec))
     .show(false)
 
-  Thread.sleep(1000000)
+//  Thread.sleep(1000000)
 }

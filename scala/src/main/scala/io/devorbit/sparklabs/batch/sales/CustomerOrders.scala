@@ -1,4 +1,4 @@
-package io.devorbit.sparklabs
+package io.devorbit.sparklabs.batch.sales
 
 import org.apache.spark.sql.functions._
 
@@ -10,5 +10,5 @@ object CustomerOrders extends App {
     .orderBy(desc("total_orders"))
     .show(false)
 
-  Thread.sleep(1000000)
+//  Thread.sleep(1000000)
 }

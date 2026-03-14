@@ -1,5 +1,6 @@
-package io.devorbit.sparklabs
+package io.devorbit.sparklabs.batch.sales
 
+import java.nio.file.{Files, Paths}
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.{col, count, desc}
 
@@ -18,17 +19,32 @@ object Utils {
     .option("header", "true")
     .option("inferSchema", "true")
 
-  private val customerPath = "/Users/jayantkumar/Workspace/Code/SparkLabs/scala/data/sales/customers.csv"
-  private val deliveriesPath = "/Users/jayantkumar/Workspace/Code/SparkLabs/scala/data/sales/deliveries.csv"
-  private val eventStreamPath = "/Users/jayantkumar/Workspace/Code/SparkLabs/scala/data/sales/events_stream.csv"
-  private val inventoryPath = "/Users/jayantkumar/Workspace/Code/SparkLabs/scala/data/sales/inventory.csv"
-  private val orderItemsPath = "/Users/jayantkumar/Workspace/Code/SparkLabs/scala/data/sales/order_items.csv"
-  private val ordersPath = "/Users/jayantkumar/Workspace/Code/SparkLabs/scala/data/sales/orders.csv"
-  private val productsPath = "/Users/jayantkumar/Workspace/Code/SparkLabs/scala/data/sales/products.csv"
-  private val promotionsPath = "/Users/jayantkumar/Workspace/Code/SparkLabs/scala/data/sales/promotions.csv"
-  private val returnsPath = "/Users/jayantkumar/Workspace/Code/SparkLabs/scala/data/sales/returns.csv"
-  private val salesRepPath = "/Users/jayantkumar/Workspace/Code/SparkLabs/scala/data/sales/sales_reps.csv"
-  private val storesPath = "/Users/jayantkumar/Workspace/Code/SparkLabs/scala/data/sales/stores.csv"
+  private val salesDataRoot = {
+    val cwd = Paths.get("").toAbsolutePath.normalize()
+    val candidates = Seq(
+      cwd.resolve("data").resolve("sales"),
+      cwd.resolve("..").resolve("data").resolve("sales")
+    ).map(_.normalize())
+
+    candidates.find(Files.exists(_)).getOrElse {
+      throw new IllegalStateException(
+        s"Unable to locate shared sales data. Checked: ${candidates.mkString(", ")}"
+      )
+    }
+  }
+  private def salesPath(fileName: String): String = salesDataRoot.resolve(fileName).toString
+
+  private val customerPath = salesPath("customers.csv")
+  private val deliveriesPath = salesPath("deliveries.csv")
+  private val eventStreamPath = salesPath("events_stream.csv")
+  private val inventoryPath = salesPath("inventory.csv")
+  private val orderItemsPath = salesPath("order_items.csv")
+  private val ordersPath = salesPath("orders.csv")
+  private val productsPath = salesPath("products.csv")
+  private val promotionsPath = salesPath("promotions.csv")
+  private val returnsPath = salesPath("returns.csv")
+  private val salesRepPath = salesPath("sales_reps.csv")
+  private val storesPath = salesPath("stores.csv")
 
   lazy val customers = reader.load(customerPath)
   lazy val deliveries = reader.load(deliveriesPath)
